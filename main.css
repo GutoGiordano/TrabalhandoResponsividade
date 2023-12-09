@@ -1,0 +1,195 @@
+*{ /* Resetando as configurações*/
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif; /*Colocar em aspas simples o nome da fonte inserida*/
+}
+
+.container {
+    max-width: 1024px; /*largura máxima*/
+    width: 100%; /*Ocupando a largura total*/
+    margin: 0 auto; /*Centralizando na horizontal*/
+}
+
+header .container {
+    display: flex; /*Alinhando lado a lado*/
+    justify-content: space-between; /*cada conteúdo de uma extremidade da página*/
+    align-items: center; /*Centraliza na vertical*/
+}
+
+header {
+    padding: 16px 0 0; /*Espaçamento Interno*/
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 56px;
+}
+
+.submenu {
+    display: none; /*Uma dica aqui é para estilizar, colocar o display block e depois voltar para o none*/
+    border: 1px solid red;
+    background-color: #fff;
+    position: absolute; /*Evita o erro de um submenu empurrar o outro*/
+    left: 0; /*alinhando os elementos à esquerda*/
+    width: 300px;
+    top: 100%; /*Aqui eu estou alinhando o submenu abaixo da linha*/
+}
+
+.menu > li { /* O sinal > diz que a regra só vai aplicar ao filho direto do .menu no HTML*/
+    float: left; /*Coloca lado a lado, mas tem um defeito e arrumo com o comando clear abaixo*/
+    list-style: none; /*Tirando os pontos da listas*/
+    padding: 16px;
+    border-top: 4px solid transparent; /*tornando a borda invisivel*/
+    position: relative; /*Ele retem o elemento filho que tenha uma position absolute, no caso o .menu*/
+}
+
+.clear { /*Arrumando o defeito do efeito float*/
+    clear: both;
+}
+
+.menu li:hover .submenu { /*Fazendo o menu aparecer quando passa o mouse por cima (:hover)*/
+    display: block; /*um abaixo do outro*/
+}
+
+.menu li:hover { /*Aqui eu estou criando um efeito que vai aparecer como se estivesse selecionado o menu, mostrando uma linha sobre os itens do menu*/
+    border-color: red;
+}
+
+.submenu li {
+    display: block;
+    padding: 8px;
+}
+
+/*Conteúdo do site*/
+
+.conteudo { /*Conteúdo do site em grid*/
+    display: grid;
+    grid-template-columns: 70% 30%; /*ajustando o site para duas colunas com os valores*/
+}
+
+.noticia img { /*ajustando a largura das imagens para evitar o scroll (barra de rolagem horizontal)*/
+    max-width: 100%;
+}
+
+.destaque .noticia a {
+    display: flex;
+    font-size: 2em; /*ajuste de medida "em" é a relação de tamanho de fonte com o elemento pai*/
+}
+
+.destaque {
+    margin-bottom: 56px;
+}
+
+.destaque .noticia img {
+    margin-right: 8px;
+}
+
+section h2 {
+    margin-bottom: 32px;
+}
+
+aside {
+    padding-left: 40px;
+}
+
+aside .noticia {
+    margin-bottom: 24px;
+}
+
+.noticias {
+    display: grid;
+    grid-template-columns: repeat(3, 32.6%);
+    column-gap: 1%; /*Ajustando o espaçamento entre as colunas*/
+    row-gap: 5%; /*Ajustando o espaçamento entre as linhas*/
+}
+
+/*Deixando so site responsivo: celular - 767px (maximo)*/
+@media screen and (max-width: 767px) {
+    .conteudo { /*Conteúdo do site em grid*/
+        display: block;
+    }
+
+    .container {
+        max-width: 90%;
+    }
+
+    .destaque .noticia a {
+        display: block;
+        font-size: 1.5em; /*ajuste de medida "em" é a relação de tamanho de fonte com o elemento pai*/
+    }
+    
+    .destaque .noticia img {
+        margin-right: 0;
+    }
+
+    .noticias {
+        display: block;
+    }
+
+    .noticias .noticia {
+        margin-bottom: 32px;
+    }
+
+    aside {
+        padding-left: 0;
+    }
+
+    header div.container {
+        flex-direction: column; /*mudando a direção do flex de linha para colunas*/
+    }
+
+    .submenu {
+        display: block;
+        width: 100%;
+        position: relative;
+        border: none;
+    }
+
+    .menu { /* Adicionando um botão para abrir o menu*/
+        display: none;
+    }
+    
+    .menu > li { /* O sinal > diz que a regra só vai aplicar ao filho direto do .menu no HTML*/
+        clear: both;
+    }
+        
+    .submenu li {
+        display: block;
+        padding: 8px;
+    }
+
+    .botao-menu {
+        display: flex;
+        justify-content: center;
+        margin-top: 16px;
+        padding-bottom: 16px;
+    }
+
+    .botao-menu button {
+        padding: 8px;
+    }
+}
+
+/*Deixando so site responsivo: tablet - 768px (mínimo) e 1023px (máximo)*/
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .container {
+        max-width: 90%;
+    }
+
+    .botao-menu {
+        display: none;
+    }
+
+    .destaque .noticia a { /*Alterando a proporção das fontes*/
+        font-size: 1.5em;
+    }
+
+    .noticias { /*Ajustando para duas colunas*/
+        grid-template-columns: repeat(2, 49%);
+    }
+}
+
+/*Ajustando a versão para desktop: 1024px (mínimo)*/
+@media screen and (min-width: 1024px) {
+    .botao-menu {
+        display: none;
+    }   
+}
